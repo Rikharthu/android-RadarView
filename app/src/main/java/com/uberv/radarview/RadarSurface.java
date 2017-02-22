@@ -79,6 +79,10 @@ public class RadarSurface extends SurfaceView implements SurfaceHolder.Callback 
             Paint textPaint = new Paint();
             textPaint.setTextSize(32);
             textPaint.setColor(Color.RED);
+            Paint whitePaint = new Paint();
+            whitePaint.setStrokeWidth(10);
+            whitePaint.setColor(Color.WHITE);
+            whitePaint.setStyle(Paint.Style.STROKE);
             while (running) {
                 canvas = null;
                 try {
@@ -119,6 +123,11 @@ public class RadarSurface extends SurfaceView implements SurfaceHolder.Callback 
                     float k2 = height/400;
                     vectorX = (int) (length*Math.cos(Math.toRadians(deg))*tmp);
                     vectorY = (int) (length*Math.sin(Math.toRadians(deg))*tmp);
+
+                    canvas.drawCircle(radarCenterX,height,length*tmp,whitePaint);
+                    canvas.drawCircle(radarCenterX,height,length*tmp/3,whitePaint);
+                    canvas.drawCircle(radarCenterX,height,length*tmp/3*2,whitePaint);
+
                     canvas.drawLine(radarCenterX, height, vectorX+radarCenterX, height-(vectorY), radarPaint);
                     canvas.drawLine(radarCenterX, height, vectorX+radarCenterX, height, radarPaint);
                     canvas.drawLine(vectorX+radarCenterX, height, vectorX+radarCenterX, height-(vectorY), radarPaint);
